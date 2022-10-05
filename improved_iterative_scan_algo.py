@@ -12,7 +12,7 @@ import networkx as nx
 def community_weight(community):
 	return float(2 * nx.number_of_edges(community) / nx.number_of_nodes(community))
 
-#Improved communities detected by IS2 (Improved Iterative Scan) Algorithm
+#Improve communities detected by Link Aggregate Algorithm
 def improved_iterative_scan_algo(community,graph):
 	# Construct the subgraph corresponding to the input community
 	community_graph = graph.subgraph(community)
@@ -26,7 +26,7 @@ def improved_iterative_scan_algo(community,graph):
 		for vertex in community_graph.nodes:
 			N = list(set(N).union(set(graph.neighbors(vertex))))
 
-		# check if the iterated vertex can increase the communication density
+		# check if the iterated vertex can increase the community density
 		for vertex in N:
 			vertices = list(community_graph.nodes)
 			if vertex in vertices:
