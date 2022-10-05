@@ -1,16 +1,20 @@
 '''
-Implementated paper: "Efficient Identification of Overlapping Communities"
+Implementation of Efficient Identification of Overlapping Communities
+This file contains reading the input dataset file given as the command line argument
+and running Link Aggregate Algorithm and Improved Iterative Scan Algorithm. 
+Once the results are obtained, it writes the output to the results folder. 
 
-Team members:
-Vamshi Chidara (schidar)
-Akhil kumar Mengani (amengan)
-Nivedita lodha (nnlodha)
+@author -  Vamshi Chidara (schidar), Akhil kumar Mengani (amengan), Nivedita lodha (nnlodha)
 '''
 
 import sys
 import networkx as nx
 from link_aggregrate_algo import *
 from improved_iterative_scan_algo import *
+
+def get_file_name_from_file_path(file_path):
+    output_file = file_path.split("/")
+    return output_file[len(output_file)-1]
 
 def main():
     graph = nx.Graph()
@@ -33,8 +37,11 @@ def main():
         community = sorted (community)
         if community not in unique_final_communities:
             unique_final_communities.append(community)
-   
-    with open("./result/output.txt", 'w') as file_ptr:
+    
+    output_file_name = get_file_name_from_file_path(data_file)
+    output_path = "./results/"+output_file_name+".txt"
+
+    with open(output_path, 'w') as file_ptr:
         for community in unique_final_communities:
             community_data = " ".join(map(str, community))
             file_ptr.write(community_data + '\n')

@@ -1,3 +1,11 @@
+'''
+Improved Iterative Scan Algorithm: 
+Improved Iterative Scan Algorithm is an improvement in the runtime of the Iterative scan algorithm. 
+Implementation is quite similar to an Iterative scan except that the nodes that don't contribute to cluster density are ignored.
+
+@author -  Vamshi Chidara (schidar), Akhil kumar Mengani (amengan), Nivedita lodha (nnlodha)
+'''
+
 import networkx as nx
 
 def community_weight(community):
@@ -30,7 +38,7 @@ def improved_iterative_scan_algo(community,graph):
 				community_graph = community_graph_prime.copy()
 		W_new = community_weight(community_graph)
 		if W_new == W:
-			increase = False
+			metric_increase = False
 		else:
 			W = W_new
-	return list(community_weight.nodes)
+	return list(community_graph.nodes)
