@@ -1,11 +1,14 @@
 import networkx as nx
 
+# Calculate density of the community as metric
 def community_weight(community):
 	return float(2 * nx.number_of_edges(community) / nx.number_of_nodes(community))
 
-
+#Improved communities detected by IS2 (Improved Iterative Scan) Algorithm
 def improved_iterative_scan_algo(community,graph):
+	# Construct the subgraph corresponding to the input community
 	community_graph = graph.subgraph(community)
+	# Calculate the density of the community (metric)
 	W = community_weight(community_graph)
 	metric_increase = True
 	while metric_increase:
@@ -30,7 +33,7 @@ def improved_iterative_scan_algo(community,graph):
 				community_graph = community_graph_prime.copy()
 		W_new = community_weight(community_graph)
 		if W_new == W:
-			increase = False
+			metric_increase = False
 		else:
 			W = W_new
-	return list(community_weight.nodes)
+	return list(community_graph.nodes)

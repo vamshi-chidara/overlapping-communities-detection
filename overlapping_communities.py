@@ -22,7 +22,6 @@ def main():
             vertex1 = int(line[0])
             vertex2 = int(line[1])
             graph.add_edge(vertex1,vertex2)
-    
     initial_communities = link_aggregrate_algorithm(graph)
     final_communities = []
     for community in initial_communities:
@@ -33,7 +32,7 @@ def main():
         community = sorted (community)
         if community not in unique_final_communities:
             unique_final_communities.append(community)
-   
+    print(unique_final_communities)
     with open("./result/output.txt", 'w') as file_ptr:
         for community in unique_final_communities:
             community_data = " ".join(map(str, community))
