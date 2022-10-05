@@ -26,7 +26,6 @@ def main():
             vertex1 = int(line[0])
             vertex2 = int(line[1])
             graph.add_edge(vertex1,vertex2)
-    
     initial_communities = link_aggregrate_algorithm(graph)
     final_communities = []
     for community in initial_communities:
