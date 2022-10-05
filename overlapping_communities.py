@@ -16,9 +16,17 @@ def get_file_name_from_file_path(file_path):
     output_file = file_path.split("/")
     return output_file[len(output_file)-1]
 
-def main():
+def write_community_data_to_file(community, file_ptr):
+    community_data = " ".join(map(str, community))
+    file_ptr.write(community_data + '\n')
+
+def write_overlapping_communities_to_results():
     graph = nx.Graph()
+
+    #get input dataset file from command line argument
     data_file = sys.argv[1]
+
+    #read input file
     with open(data_file) as file_ptr:
         next(file_ptr)
         for line in file_ptr:
@@ -26,25 +34,25 @@ def main():
             vertex1 = int(line[0])
             vertex2 = int(line[1])
             graph.add_edge(vertex1,vertex2)
+    
+    #seed clusters
     initial_communities = link_aggregrate_algorithm(graph)
-    final_communities = []
-    for community in initial_communities:
-        final_communities.append(improved_iterative_scan_algo(community, graph))
+
+    #get communities with iterative scan
+    final_communities = [improved_iterative_scan_algo(community, graph) for community in initial_communities] 
     
     unique_final_communities = []
     for community in final_communities:
-        community = sorted (community)
-        if community not in unique_final_communities:
-            unique_final_communities.append(community)
+        if sorted(community) not in unique_final_communities:
+            unique_final_communities.append(sorted(community))
     
     output_file_name = get_file_name_from_file_path(data_file)
     output_path = "./results/"+output_file_name+".txt"
 
     with open(output_path, 'w') as file_ptr:
         for community in unique_final_communities:
-            community_data = " ".join(map(str, community))
-            file_ptr.write(community_data + '\n')
+           write_community_data_to_file(community, file_ptr) 
 
 
 if __name__ == "__main__":
-    main()
+    write_overlapping_communities_to_results()
