@@ -56,3 +56,13 @@ Example:
 When 
 python overlapping_communities.py ./datasets/amazon/amazon.graph.small is run, output is written to /results/amazon.graph.small file.
 
+The output file will look something as follows:
+197 198 199 2860
+997 998 999 1000 2645
+56 57 59 61 1390 1426
+1236 2264 2817 2823 2825
+.
+.
+
+Each line consists of nodes (node identifiers) that belong to the same community. If we look at the above sample output, community 1 consists of 4 nodes, community 2 and 3 consists of 5 nodes where as community 4 consists of 5 nodes.
+
