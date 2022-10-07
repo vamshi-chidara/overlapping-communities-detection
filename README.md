@@ -51,18 +51,26 @@ Example to run YouTube small graph:
 python overlapping_communities.py ./datasets/youtube/youtube.graph.small
 
 4. Input and Output Files:
+The input files consists of lines with each line denoting vertices which have an edge in the corresponding graph.
+
+Sample input file:
+93432 335520
+0 1
+2 3
+2 4
+.
+.
+
 After running the command as given in 3. Instructions To Run , outputs are written to the result folder. An output file with the same name as the input dataset-file is created in the results folder.
 Example:
-When 
-python overlapping_communities.py ./datasets/amazon/amazon.graph.small is run, output is written to /results/amazon.graph.small file.
+When we run "python overlapping_communities.py ./datasets/amazon/amazon.graph.small", output is written to /results/amazon.graph.small file.
 
-The output file will look something as follows:
+In the output file, each line consists of nodes (node identifiers) that belong to the same community. If we look at the above sample output, community 1 consists of 4 nodes, community 2 and 3 consists of 5 nodes where as community 4 consists of 5 nodes.
+
+Sample output file:
 197 198 199 2860
 997 998 999 1000 2645
 56 57 59 61 1390 1426
 1236 2264 2817 2823 2825
 .
 .
-
-Each line consists of nodes (node identifiers) that belong to the same community. If we look at the above sample output, community 1 consists of 4 nodes, community 2 and 3 consists of 5 nodes where as community 4 consists of 5 nodes.
-
